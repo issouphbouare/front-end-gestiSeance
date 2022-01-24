@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Liste Des Seances
+                        <a routerLink="/professeurs" class="btn btn-success float-right">Retour</a>
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered" *ngIf="seances">
+                        <thead>
+
+                            <tr>
+                                <th>Date Seance</th>
+                                <th>Type</th>
+                                <th>Horaire</th>
+                                <th>Duree</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+
+                            <tr *ngFor="let s of seances._embedded.seances  ">
+                                <td>{{s.date}}</td>
+                                <td>{{s.type}}</td>
+                                <td>{{s.horaire}}</td>
+                                <td>{{s.duree}}</td>
+
+
+
+                                <td>
+                                    <button [routerLink]="['/detailSeance',s._links.self.href]"
+                                        class="btn btn-primary">Detail</button>
+                                    <button (click)="onDelete(s)" class="btn btn-danger sp">Supprimer</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul *ngIf="pages" class="pagination float-right">
+                                <li class="page-link">Pages</li>
+                                <li class=" page-item " [ngClass]="i==currentPage? 'active' : ''"
+                                    *ngFor="let p of pages; let i=index">
+                                    <a class="page-link clickable sp" (click)="goToPage(i)">{{i}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Honoraires Des Professeurs
+                        <a routerLink="/professeurs" class="btn btn-primary float-right">Retour</a>
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered" *ngIf="honoProfs && total">
+                        <thead>
+                            <tr >
+                                  <th>Prenom</th>
+                                  <th>Nom</th>
+                                  <th>Honoraires</th>
+                                  <th>Deja Payés</th>
+
+                                  
+
+                            </tr>
+                        </thead>
+                            <tbody>
+                                <tr *ngFor="let h of honoProfs">
+                                    <td>{{h.prenom}}</td>
+                                    <td>{{h.nom}}</td>
+                                    <td>{{h.honoraire}}</td>
+                                    <td>{{h.dejaPayer}}</td>
+                                    <td>
+                                        <button *ngIf="h.honoraire>0" [routerLink]="['/ajoutP',h.id]" class="btn btn-primary">Payer</button>
+
+                                    </td>
+                                    
+                                </tr>
+                                <tr >
+                                    <td></td>
+                                    <td>Totaux</td>
+                                    <td class="fo">{{total.honoraire}}</td>
+                                    <td class="fo">{{total.dejaPayer}}</td>
+                                </tr>
+                               
+
+
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+                            
+
+                                  
+

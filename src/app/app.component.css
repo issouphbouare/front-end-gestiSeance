@@ -1,0 +1,9 @@
+.active{
+    background-color:rgb(117, 37, 192);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+   
+}
+
+.clickable{
+    cursor: pointer;
+}

@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-8">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Ajout de classe
+                        <a routerLink="/classes" class="btn btn-primary float-right">Retour</a>
+                    </h4>
+                </div>
+                   <div class="card-body">
+                    <form [formGroup]="formAdd" (ngSubmit)="onSubmit()">
+                       <div class="row">
+                           <div class="col-md-8">
+                               <div class="form-group">
+                                   <label>Nom_Classe</label>
+                                   <input type="text" formControlName="nom" class="form-control" ngModel placeholder="au moins 2 caracteres">
+                                   <p style="color: brown;" *ngIf="!formAdd.controls['nom'].valid">(Le premier caractere doit etre une lettre majuscule et le deuxieme une lettre)</p>
+
+                                   <label>Effectif</label>
+                                   <input type="number" [max]="50" formControlName="effectif"  class="form-control" placeholder="Entrez l'effectif ">
+                                   <p style="color: brown;" *ngIf="!formAdd.controls['effectif'].valid">( L'effectif doit etre un entier compris entre 2 et 50 )</p>
+                                   <label>Niveau</label>
+                                   <select formControlName="niveau" class="form-control" id="" >
+                                       <option value="Licence">Licence</option>
+                                       <option value="Master">Master</option>
+                                       <option value="Doctorat">Doctorat</option>
+                                   </select>
+                                   <label>Domaine</label>
+                                   <input type="text" formControlName="domaine"  class="form-control" placeholder="au moins 5 caracteres">
+                                   <p style="color: brown;" *ngIf="!formAdd.controls['domaine'].valid"> (Le premier caractere doit etre une lettre majuscule ) </p> 
+                               </div>
+                               <div class="form-group">
+                                <button [disabled]="!formAdd.valid"    type="submit" class="btn btn-success px-4">Ajouter</button>
+                            </div>
+                           </div>
+                       </div>
+                    </form>
+                   </div>
+            </div>
+        </div>
+    </div>
+</div>
+

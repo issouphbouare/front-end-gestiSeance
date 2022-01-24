@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Honoraires Du Professeur
+                        <a routerLink="/professeurs" class="btn btn-primary float-right">Retour</a>
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Prenom</th>
+                                <th>Nom</th>
+                                <th>Honoraires</th>
+                                <th>Deja Payés</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="honoPr">
+                            <tr>
+                                <td>{{honoPr.prenom}}</td>
+                                <td>{{honoPr.nom}}</td>
+                                <td>{{honoPr.honoraire}}</td>
+                                <td>{{honoPr.dejaPayer}}</td>
+                                <td>
+                                    <button *ngIf="honoPr.honoraire>0 && authService.isAdmin()" 
+                                        [routerLink]="['/ajoutP',honoPr.id]" class="btn btn-primary">Payer</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

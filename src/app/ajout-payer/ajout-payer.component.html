@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4>Formulaire De Paie
+                        <a routerLink="/professeurs" class="btn btn-danger float-right">retour</a>
+                    </h4>
+                </div>
+                <div class="card-body" *ngIf="prof && honoPr">
+                    <form [formGroup]="formEdit" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="form-group">
+                                    <label>Prenom :</label>
+                                    <h6> {{honoPr.prenom}} </h6>
+                                    <label>Nom :</label>
+                                    <h6> {{honoPr.nom}}</h6>
+
+                                    <input type="text" type="hidden" formControlName="professeur" class="form-control"
+                                        ngModel [(ngModel)]="prof._links.self.href">
+                                    <label>Honoraire</label>
+                                    <input type="number" formControlName="honoraire" class="form-control" ngModel
+                                        [(ngModel)]="honoPr.honoraire">
+                                    <p style="color: brown;" *ngIf="!formEdit.controls['honoraire'].valid"> (L'honoraire doit etre
+                                        un nombre positif ) </p>
+                                    <label>Taux Horaire :</label>
+                                    <input type="number" formControlName="taux_h" class="form-control" ngModel
+                                        [(ngModel)]="honoPr.taux_h">
+                                    <p style="color: brown;" *ngIf="!formEdit.controls['taux_h'].valid"> (Le taux doit etre 
+                                        superieur a 1000) </p>
+                                </div>
+                                <div class="form-group">
+                                    <button [disabled]="!formEdit.valid" type="submit"
+                                        class="btn btn-success px-4">Payer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

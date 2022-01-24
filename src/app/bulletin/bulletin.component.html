@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card" id="recu">
+                <div class="card-header">
+                    <h4>Bulletin de Paiement
+                    </h4>
+                </div>
+                <div class="card-body" *ngIf="prof && payer">
+                    <div class="row">
+                        <div class="col-md-12 cs">
+                            <div class="form-group ">
+                                <label>Date : {{payer.date}} </label>
+                            </div>
+                            <div class="form-group ">
+                                <label>Prenom : {{prof.prenom}} </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Nom : {{prof.nom}} </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Honoraire : {{payer.honoraire}} heures</label>
+                            </div>
+                            <div class="form-group">
+                                <label>Taux Horaire : {{payer.taux_h}} Fcfa </label>
+                            </div>
+                            <div class="form-group">
+                                <label>Montant : {{payer.honoraire*payer.taux_h}} Fcfa</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button printSectionId="recu" ngxPrint class="btn btn-success">Imprimer</button>
+        <button routerLink="/professeurs" class="btn btn-primary px-4 sp">Retour</button>
+    </div>
+</div>

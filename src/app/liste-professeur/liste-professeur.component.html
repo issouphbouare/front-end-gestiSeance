@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-6">
+            <div class="card">
+                <div class="card-header" *ngIf="User">
+                    <h4 class="row justify-content-md-center">
+                        Bienvenue  Mr/Mme  _ {{User.nom}} _ {{User.prenom}}
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered" *ngIf="profs">
+                        <thead>
+                        
+                            <tr>
+                                <th>numero_tel</th>
+                                <th>Nom</th>
+                                <th>Prenom</th>
+                                <th>Seances</th>
+                                <th>Paiement</th>
+                          </tr>
+                        </thead>
+                            <tbody>                           
+                                <tr *ngFor ="let p of profs._embedded.professeurs">
+                                    <td *ngIf="authService.isAdmin() || authService.loggedProf==p.tel">
+                                        {{p.tel}}</td>
+                                    <td *ngIf="authService.isAdmin() || authService.loggedProf==p.tel">
+                                        {{p.nom}}</td>
+                                    <td *ngIf="authService.isAdmin() || authService.loggedProf==p.tel">
+                                        {{p.prenom}}</td>
+                                    <td *ngIf="authService.isAdmin() || authService.loggedProf==p.tel">
+                                        <button [routerLink]="['/ajoutSeance',p._links.self.href]" class="btn btn-success ">Ajout</button>
+                                        <button [routerLink]="['/seancesPr',p._links.seances.href]" class="btn btn-primary sp">Liste</button>
+                                    </td>
+                                    <td *ngIf="authService.isAdmin() || authService.loggedProf==p.tel">
+                                        <button [routerLink]="['/archivesPr',p._links.payers.href]" class="btn btn-primary ">Archives</button>
+                                        <button [routerLink]="['/honorairePr',p.id]" class="btn btn-success sp ">Honoraires</button>
+                                    </td>
+                                    <td *ngIf="authService.isAdmin()">
+                                        <button [routerLink]="['/role',p._links.self.href]" class="btn btn-success sp">Role</button>
+                                        <button (click)="onDelete(p)" class="btn btn-danger sp">Supprimer</button>
+                                        <button [routerLink]="['/modifieProfesseur',p._links.self.href]" class="btn btn-primary sp">Editer</button>
+                                    </td>
+                                </tr>
+                            </tbody>    
+                    </table>
+
+                      <div class="row">
+                            <div class="col-md-12">
+                                <ul *ngIf="pages" class="pagination float-right">
+                                    <li class="page-link">Pages</li>
+                                    <li class=" page-item " [ngClass]="i==currentPage? 'active' : ''" *ngFor="let p of pages; let i=index">
+                                       <a class="page-link clickable sp" (click)="goToPage(i)">{{i}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+   

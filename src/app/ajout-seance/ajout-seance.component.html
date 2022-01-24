@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-8">
+            <div class="card">
+                <div class="card-header" *ngIf="prof">
+                    <h4>Ajout de Seance -- Par   Mr/Mme - {{prof.nom}}
+                        <a routerLink="/professeurs" class="btn btn-primary float-right">Retour</a>
+                    </h4>
+                </div>
+                <div class="card-body" *ngIf="prof && classes && matieres">
+                    <form [formGroup]="formAdd" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <label>Classe</label>
+                                                <select formControlName="classe" class="form-control" id="">
+                                                    <option *ngFor="let c of classes._embedded.classes"
+                                                        [value]="c._links.self.href">{{c.nom}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>Matiere</label>
+                                                <select formControlName="matiere" class="form-control" id="">
+                                                    <option *ngFor="let m of matieres._embedded.matieres"
+                                                        [value]="m._links.self.href">{{m.nom}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="cen">Bienvenue --  Mme/Mr   {{prof.prenom}}   {{prof.nom}}</label>
+                                                <input  type="hidden" formControlName="professeur" class="form-control"
+                                                    [(ngModel)]="prof._links.self.href" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col-md-3">
+                                                <label>Horaire</label>
+                                                <input type="text" formControlName="horaire" class="form-control"
+                                                    placeholder=" ">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>duree</label>
+                                                <select formControlName="duree" class="form-control" id="">
+                                                    <option value="01">01</option>
+                                                    <option value="02">02</option>
+                                                    <option value="03">03</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label>Type</label>
+                                                <select formControlName="type" class="form-control" id="">
+                                                    <option value="CM">CM</option>
+                                                    <option value="TD">TD</option>
+                                                    <option value="TP">TP</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <label>Titre</label>
+                                    <input type="text" formControlName="titre" class="form-control" placeholder="">
+
+                                    <label>Contenu</label>
+                                    <textarea type="text" class="form-control" rows="5"
+                                        formControlName="contenu"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <button [disabled]="!formAdd.valid" type="submit"
+                                        class="btn btn-success px-4">Ajouter</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

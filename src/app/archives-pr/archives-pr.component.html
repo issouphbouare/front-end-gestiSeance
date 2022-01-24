@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4> Vos Archives de Paiements
+                        <a routerLink="/professeurs" class="btn btn-primary float-right">Retour</a>
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered" *ngIf="archivesPr">
+                        <thead>
+                            <tr>
+                                <th>Date Paiment</th>
+                                <th>Honoraire</th>
+                                <th>Taux Horaire</th>
+                                <th>Montant</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let a of archivesPr._embedded.payers  ">
+                                <td>{{a.date}}</td>
+                                <td>{{a.honoraire}}</td>
+                                <td>{{a.taux_h}}</td>
+                                <td>{{a.taux_h*a.honoraire}}</td>
+
+                                <td>
+                                    <button [routerLink]="['/bulletin',a._links.self.href]"
+                                        class="btn btn-success sp ">Reçu</button>
+                                    <button *ngIf="authService.isAdmin()" [routerLink]="['/modifiePayer',a._links.self.href]"
+                                        class="btn btn-primary sp">Editer</button>
+                                    <button *ngIf="authService.isAdmin()" (click)="onDelete(a)" class="btn btn-danger sp">Supprimer</button>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
